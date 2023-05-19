@@ -15,6 +15,9 @@ public abstract class Tile {
     //Tile collection
     public static final Tile VOID = new VoidTile(Sprite.VOID);
     public static final Tile GRASS = new GrassTile(Sprite.GRASS);
+    public static final Tile DIRT = new DirtTile(Sprite.DIRT);
+    public static final Tile SAND = new SandTile(Sprite.SAND);
+    public static final Tile WATER = new WaterTile(Sprite.WATER);
     //End file collection
     
     

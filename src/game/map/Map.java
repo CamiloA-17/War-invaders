@@ -75,6 +75,14 @@ public abstract class Map {
         switch(tiles[x + y * ancho]){
             case 0:
                 return Tile.GRASS;
+            case 1:
+                return Tile.DIRT;
+            case 2:
+                return Tile.SAND;
+            case 3:
+                return Tile.WATER;
+            case 4:
+            case 5:
             default:
                 return Tile.VOID;
         }
