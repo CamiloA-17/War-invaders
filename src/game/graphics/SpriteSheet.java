@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package game.graphics;
 
 import java.awt.image.BufferedImage;
@@ -18,12 +14,12 @@ public class SpriteSheet {
     public final int[] pixeles;
     
     
-    //Sprites
+    //Colección de sprite sheets
     
     public static SpriteSheet spriteSheet = new SpriteSheet("/game/imgs/SpriteSheet.png", 320, 320);
     
     
-    //Fin sprites
+    //Fin de colección de sprite sheets
 
     public SpriteSheet(final String ruta, int ancho, int alto) {
         this.ancho = ancho;

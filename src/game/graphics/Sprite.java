@@ -1,23 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package game.graphics;
 
 /**
- *
- * @author izibr
+ * 
+ * 
  */
 public final class Sprite {
+    /**
+     * 
+     */
     private final int lado;
     private int x;
     private int y;
     public int[] pixeles;
-    private final SpriteSheet hoja;
+    private SpriteSheet hoja;
     
-    //Sprites
-    public static Sprite grass = new Sprite(32, 0, 0, SpriteSheet.spriteSheet);
-    //Fin sprites
+    //Colección de spreets
+    public static final Sprite GRASS = new Sprite(32, 0, 0, SpriteSheet.spriteSheet);
+    public static final Sprite VOID = new Sprite(32, 0);
+    //Fin de colección de sprites
     
     
 
@@ -32,7 +32,19 @@ public final class Sprite {
                 pixeles[x + y * lado] = hoja.pixeles[(x + this.x) + (y + this.y) * hoja.getAncho()];
             }
         }
+    }
+    
+    public Sprite(final int lado, final int color){
+        this.lado = lado;
+        pixeles = new int[lado * lado];
         
+        for(int i = 0; i < pixeles.length; i++){
+            pixeles[i] = color;
+        }
+    }
+
+    public int getLado() {
+        return lado;
     }
     
     

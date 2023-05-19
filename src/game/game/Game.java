@@ -2,8 +2,11 @@ package game.game;
 
 import game.controls.Keyboard;
 import game.graphics.Screen;
+import game.map.GeneratedMap;
+import game.map.Map;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -99,6 +102,8 @@ public class Game extends Canvas implements Runnable {
     private static Screen screen;
     
     
+    private static Map map;
+    
     /**
      * Es la imagen negra que queda de fondo en la ventana
      */
@@ -125,7 +130,7 @@ public class Game extends Canvas implements Runnable {
     private Game() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         screen = new Screen(WIDTH, HEIGHT);
-        
+        map = new GeneratedMap(128, 128);
         keyboard = new Keyboard();
         addKeyListener(keyboard);
         
@@ -179,19 +184,19 @@ public class Game extends Canvas implements Runnable {
         
         
         if(keyboard.arriba){
-            y++;
-        }
-        
-        if(keyboard.abajo){
             y--;
         }
         
+        if(keyboard.abajo){
+            y++;
+        }
+        
         if(keyboard.izquierda){
-            x--;
+            x++;
         }
         
         if(keyboard.derecha){
-            x++;
+            x--;
         }
         
         aps++;
@@ -210,12 +215,14 @@ public class Game extends Canvas implements Runnable {
             return;
         }
         screen.clear();
-        screen.show(x, y);
+        map.show(x, y, screen);
         
         System.arraycopy(screen.pixeles, 0, pixeles, 0, pixeles.length);
         
         Graphics g = estrategia.getDrawGraphics();
         g.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);
+        g.setColor(Color.WHITE);
+        g.fillRect(WIDTH / 2, HEIGHT / 2, 32, 32);
         g.dispose();
         
         estrategia.show();
