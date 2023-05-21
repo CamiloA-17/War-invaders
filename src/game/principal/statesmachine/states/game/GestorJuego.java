@@ -4,6 +4,7 @@
  */
 package game.principal.statesmachine.states.game;
 
+import game.principal.maps.Mapa;
 import game.principal.sprites.HojaSprite;
 import java.awt.Graphics;
 import game.principal.statesmachine.EstadoJuego;
@@ -17,8 +18,9 @@ import java.awt.image.BufferedImage;
  */
 public class GestorJuego implements EstadoJuego{
     private GestorMapa gestorMapa;
-    String texto= CargadorRecursos.leerArchivoTexto("/game/mapas/texto");
-    HojaSprite hs = new HojaSprite("/game/imgs/hojasTexturas/SpriteSheet.png", 32, true);
+    // String texto= CargadorRecursos.leerArchivoTexto("/game/mapas/texto.txt");
+    Mapa mapa= new Mapa("/game/mapas/texto.txt");
+    HojaSprite hs = new HojaSprite("/game/imgs/hojasTexturas/1.png", 32, true);
     
     @Override
     public void actualizar() {
@@ -30,7 +32,7 @@ public class GestorJuego implements EstadoJuego{
         BufferedImage imagen = hs.getSprite(0, 0).getImagen();
         g.drawImage(imagen, 100, 100, null);
         g.setColor(Color.WHITE);
-        g.drawString(texto, 10, 10);
+//        g.drawString(mapa.contenido, 10, 10);
     }
     
 }
