@@ -3,6 +3,7 @@ package game.principal.maps;
 import game.principal.sprites.HojaSprite;
 import game.principal.sprites.Sprite;
 import game.principal.tools.CargadorRecursos;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class Mapa {
@@ -10,9 +11,9 @@ public class Mapa {
     private final String[] partes;
     private final int alto;
     private final int ancho;
-    private final Sprite[] paleta;
+    private final Sprite[] paleta; //Imagenes para crear el mapa
     private final boolean[] colisiones;
-    private final int[] sprites;
+    private final int[] sprites; //Referencias al dibujo de la paleta que va en cada cuadrado del mapa
 
     public Mapa(final String ruta){
         String contenido = CargadorRecursos.leerArchivoTexto(ruta);
@@ -42,12 +43,12 @@ public class Mapa {
     
     private Sprite[] asignarSprites(final String[] partesPaleta, final String[] hojasSeparadas){
         Sprite[] paleta = new Sprite[partesPaleta.length];
-        HojaSprite hoja= new HojaSprite("/game/imgs/hojasTexturas/" + hojasSeparadas[0] + ".png", 32, true);
+        HojaSprite hoja= new HojaSprite("/game/imgs/hojasTexturas/" + hojasSeparadas[0].trim() + ".png", 32, true);
         for (int i = 0; i < partesPaleta.length; i++) {
             String spriteTemporal = partesPaleta[i];
             String[] partesSprite = spriteTemporal.split("-");
-            int indicePaleta= Integer.parseInt(partesSprite[0]);
-            int indiceSpriteHoja= Integer.parseInt(partesSprite[2]);
+            int indicePaleta= Integer.parseInt(partesSprite[0].trim());
+            int indiceSpriteHoja= Integer.parseInt(partesSprite[2].trim());
             paleta[indicePaleta]= hoja.getSprite(indiceSpriteHoja);
             
         }
@@ -95,5 +96,15 @@ public class Mapa {
             vectorSprites[i]=sprites.get(i);
         }
         return vectorSprites;
+    }
+    
+    public void dibujar(Graphics g){
+        int anchoSprite=this.paleta[0].getAncho();
+        int altoSprite= this.paleta[0].getAlto();
+        for (int y  = 0; y  < this.alto; y ++) {
+            for (int x = 0; x < this.ancho; x++) {
+                g.drawImage(paleta[sprites[x + y * this.ancho]].getImagen(), x*anchoSprite, y*altoSprite, null);
+            }
+        }
     }
 }

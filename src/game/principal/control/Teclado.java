@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
  * @author izibr
  */
 public class Teclado implements KeyListener{
-    private final static int NUMERO_TECLAS = 256;
+    private final static int NUMERO_TECLAS = 257;
     private final boolean[] teclas = new boolean[NUMERO_TECLAS];
     
     public boolean arriba;

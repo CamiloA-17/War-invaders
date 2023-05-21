@@ -1,5 +1,6 @@
 package game.principal.graphics;
 
+import game.principal.control.Mouse;
 import game.principal.control.Teclado;
 import game.principal.statesmachine.GestorEstados;
 import java.awt.Canvas;
@@ -18,12 +19,15 @@ public class SuperficieDibujo extends Canvas {
     private int alto;
     
     private Teclado teclado;
+    private Mouse raton;
     
     public SuperficieDibujo(final int ancho, final int alto){
         this.ancho = ancho;
         this.alto = alto;
-        teclado = new Teclado();
+        this.teclado = new Teclado();
+        this.raton = new Mouse();
         setIgnoreRepaint(true);
+        setCursor(raton.getCursor());
         setPreferredSize(new Dimension(ancho, alto));
         addKeyListener(teclado);
         setFocusable(true);
