@@ -1,9 +1,11 @@
 package game.principal.maps;
 
+import game.principal.Constante;
 import game.principal.sprites.HojaSprite;
 import game.principal.sprites.Sprite;
 import game.principal.tools.CargadorRecursos;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Mapa {
@@ -98,12 +100,13 @@ public class Mapa {
         return vectorSprites;
     }
     
-    public void dibujar(Graphics g){
-        int anchoSprite=this.paleta[0].getAncho();
-        int altoSprite= this.paleta[0].getAlto();
-        for (int y  = 0; y  < this.alto; y ++) {
+    public void dibujar(Graphics g,int posicionX, int posicionY){
+        int anchoSprite= Constante.LADO_SPRITE;
+        int altoSprite= anchoSprite;
+        
+        for (int y  = 0; y  < this.alto; y ++) {    
             for (int x = 0; x < this.ancho; x++) {
-                g.drawImage(paleta[sprites[x + y * this.ancho]].getImagen(), x*anchoSprite, y*altoSprite, null);
+                g.drawImage(paleta[sprites[x + y * this.ancho]].getImagen(), x*anchoSprite - posicionX, y*altoSprite - posicionY, null);
             }
         }
     }

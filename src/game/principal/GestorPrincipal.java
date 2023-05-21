@@ -1,5 +1,6 @@
 package game.principal;
 
+import game.principal.control.GestorControl;
 import game.principal.graphics.SuperficieDibujo;
 import game.principal.graphics.Ventana;
 import game.principal.statesmachine.GestorEstados;
@@ -25,7 +26,10 @@ public class GestorPrincipal {
     }
 
     public static void main(String[] args) {
+        
         GestorPrincipal controller = new GestorPrincipal("War Invaders", 640, 360);
+        Constante.ALTO_PANTALLA=360;
+        Constante.ANCHO_PANTALLA=640;
         controller.iniciarJuego();
         controller.iniciarBuclePrincipal();
     }
@@ -81,7 +85,7 @@ public class GestorPrincipal {
     
     
     private void actualizar(){
-        sd.getTeclado().actualizar();
+        GestorControl.teclado.actualizar();
         ge.actualizar();
     }
     
