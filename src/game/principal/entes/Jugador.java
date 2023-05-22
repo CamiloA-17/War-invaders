@@ -20,6 +20,10 @@ public class Jugador {
     private boolean enMovimiento;
 
     private double velocidad = 2;
+    public int resistencia = 600;
+    private int recuperacion = 100;
+    private boolean recuperado = true;
+
     private HojaSprite hs;
     private BufferedImage imagenActual;
     private final int ANCHO_JUGADOR = 20;
@@ -50,9 +54,26 @@ public class Jugador {
 
     public void actualizar() {
         cambiarAnimacionEstado();
+        gestionarVelocidadResistencia();
         enMovimiento = false;
         determinarDireccion();
         animar();
+    }
+
+    private void gestionarVelocidadResistencia() {
+        if (GestorControl.teclado.corriendo && resistencia > 0) {
+            velocidad = 2;
+            recuperado = false;
+            recuperacion = 0;
+        } else {
+            velocidad = 1;
+            if (!recuperado && recuperacion < 100) {
+                recuperacion++;
+            }
+            if (recuperacion == 100 && resistencia < 600) {
+                resistencia++;
+            }
+        }
     }
 
     private void cambiarAnimacionEstado() {
@@ -148,12 +169,15 @@ public class Jugador {
             if (velocidadX == 1 && !enColisionDerecha(velocidadX)) {
                 posicionX += velocidadX * velocidad;
             }
-            if (velocidadY == -1 && !enColisionArriba(velocidadY)){
+            if (velocidadY == -1 && !enColisionArriba(velocidadY)) {
                 posicionY += velocidadY * velocidad;
             }
-            if (velocidadY == 1 && !enColisionAbajo(velocidadY)){
+            if (velocidadY == 1 && !enColisionAbajo(velocidadY)) {
                 posicionY += velocidadY * velocidad;
             }
+        }
+        if (GestorControl.teclado.corriendo && resistencia > 0) {
+            resistencia--;
         }
     }
 
@@ -252,6 +276,7 @@ public class Jugador {
 
         g.setColor(Color.white);
         g.drawImage(imagenActual, centroX, centroY, null);
+        g.drawString("Resistencia: " + resistencia, 20, 40);
 //        g.drawRect(LIMITE_ARRIBA.x, LIMITE_ARRIBA.y, LIMITE_ARRIBA.width, LIMITE_ARRIBA.height);
 //        g.drawRect(LIMITE_ABAJO.x, LIMITE_ABAJO.y, LIMITE_ABAJO.width, LIMITE_ABAJO.height);
 //        g.drawRect(LIMITE_IZQUIERDA.x, LIMITE_IZQUIERDA.y, LIMITE_IZQUIERDA.width, LIMITE_IZQUIERDA.height);

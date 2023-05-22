@@ -4,6 +4,7 @@
  */
 package game.principal.statesmachine.states.game;
 
+import game.interfaz_usuario.InterfazUsuario;
 import game.principal.Constante;
 import game.principal.control.GestorControl;
 import game.principal.entes.Jugador;
@@ -35,6 +36,7 @@ public class GestorJuego implements EstadoJuego {
         g.setColor(Color.red);
         g.drawString("x= " + jugador.getPosicionX(), 20, 20);
         g.drawString("y= " + jugador.getPosicionY(), 20, 30);
+        InterfazUsuario.dibujarBarraResistencia(g, jugador.resistencia);
 
     }
 
