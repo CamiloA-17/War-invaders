@@ -4,7 +4,7 @@
  */
 package game.principal.statesmachine.states.game;
 
-import game.interfaz_usuario.InterfazUsuario;
+import game.interfaz_usuario.MenuInferior;
 import game.principal.Constante;
 import game.principal.control.GestorControl;
 import game.principal.entes.Jugador;
@@ -20,8 +20,15 @@ import game.principal.statesmachine.EstadoJuego;
  */
 public class GestorJuego implements EstadoJuego {
 
-    Mapa mapa = new Mapa(Constante.RUTA_MAPA);
-    Jugador jugador = new Jugador(0, 0, mapa);
+    Mapa mapa;
+    Jugador jugador;
+    MenuInferior menuInferior;
+
+    public GestorJuego() {
+        mapa = new Mapa(Constante.RUTA_MAPA);
+        jugador = new Jugador(0, 0, mapa);
+        menuInferior = new MenuInferior(jugador);
+    }
 
     @Override
     public void actualizar() {
@@ -36,7 +43,7 @@ public class GestorJuego implements EstadoJuego {
         g.setColor(Color.red);
         g.drawString("x= " + jugador.getPosicionX(), 20, 20);
         g.drawString("y= " + jugador.getPosicionY(), 20, 30);
-        InterfazUsuario.dibujarBarraResistencia(g, jugador.resistencia);
+        menuInferior.dibujar(g, jugador);
 
     }
 

@@ -25,13 +25,17 @@ public class SuperficieDibujo extends Canvas {
         this.ancho = ancho;
         this.alto = alto;
 
-        this.raton = new Mouse();
+        this.raton = new Mouse(this);
         setIgnoreRepaint(true);
         setCursor(raton.getCursor());
         setPreferredSize(new Dimension(ancho, alto));
         addKeyListener(GestorControl.teclado);
         setFocusable(true);
         requestFocus();
+    }
+    
+    public void actualizar(){
+        raton.actualizar(this); 
     }
     
     public void dibujar(GestorEstados ge){
@@ -45,6 +49,7 @@ public class SuperficieDibujo extends Canvas {
         g.fillRect(0, 0, ancho, alto);
         
         ge.dibujar(g);
+        raton.dibujar(g);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
         buffer.show();
