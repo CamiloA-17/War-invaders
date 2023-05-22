@@ -28,8 +28,8 @@ public class GestorPrincipal {
     public static void main(String[] args) {
         
         GestorPrincipal controller = new GestorPrincipal("War Invaders", 640, 360);
-        Constante.ALTO_PANTALLA=360;
-        Constante.ANCHO_PANTALLA=640;
+        Constante.ALTO_VENTANA=360;
+        Constante.ANCHO_VENTANA=640;
         controller.iniciarJuego();
         controller.iniciarBuclePrincipal();
     }
@@ -68,6 +68,7 @@ public class GestorPrincipal {
             while (delta >= 1) {
                 actualizar();
                 aps++;
+                Constante.APS = aps;
                 delta--;
             }
             dibujar();
@@ -77,6 +78,7 @@ public class GestorPrincipal {
                 //window.setTitle(GAME_NAME + " || APS: " + aps + " || FPS: " + fps);
                 System.out.println("FPS: " + fps + " | APS: "+ aps);
                 fps = 0;
+                Constante.APS = aps;
                 aps = 0;
                 referenciaContador = System.nanoTime();
             }
@@ -85,7 +87,6 @@ public class GestorPrincipal {
     
     
     private void actualizar(){
-        GestorControl.teclado.actualizar();
         ge.actualizar();
     }
     

@@ -46,7 +46,7 @@ public class CargadorRecursos {
         Image imagen = null;
 
         try {
-            imagen = ImageIO.read(ClassLoader.class.getResource(ruta));
+            imagen = ImageIO.read(CargadorRecursos.class.getResource(ruta));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

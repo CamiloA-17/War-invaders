@@ -4,6 +4,7 @@
  */
 package game.principal.graphics;
 
+import game.principal.Constante;
 import game.principal.tools.CargadorRecursos;
 import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
@@ -20,7 +21,7 @@ public class Ventana extends JFrame{
     
     public Ventana(final String titulo,  final SuperficieDibujo surface){
         this.titulo = titulo;
-        BufferedImage imagen= CargadorRecursos.cargarImagenCompatibleOpaca("/game/imgs/iconos/icono.png");
+        BufferedImage imagen= CargadorRecursos.cargarImagenCompatibleTranslucida(Constante.RUTA_ICONO_VENTANA);
         this.icono= new ImageIcon(imagen);
         configurarVentana(surface);
         

@@ -4,6 +4,7 @@
  */
 package game.principal.control;
 
+import game.principal.Constante;
 import game.principal.tools.CargadorRecursos;
 import java.awt.Cursor;
 import java.awt.Point;
@@ -19,7 +20,7 @@ public class Mouse {
 
     public Mouse() {
         Toolkit configuracion = Toolkit.getDefaultToolkit();
-        BufferedImage icono = CargadorRecursos.cargarImagenCompatibleOpaca("/game/imgs/iconos/iconoCursor.png");
+        BufferedImage icono = CargadorRecursos.cargarImagenCompatibleTranslucida(Constante.RUTA_ICONO_CURSOR);
         Point punta = new Point(0, 0);
         this.cursor= configuracion.createCustomCursor(icono, punta, "Cursor por defecto");
     }
