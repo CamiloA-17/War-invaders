@@ -5,8 +5,15 @@
 package game.principal.control;
 
 /**
- *
- * @author izibr
+ *En esta clase se tiene un control de cada tecla del teclado de manera individual
+ * para poder manejar sus estados
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
  */
 public class Tecla {
     private boolean pulsada = false;

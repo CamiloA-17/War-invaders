@@ -9,8 +9,14 @@ import game.principal.entes.Jugador;
 import game.principal.tools.CargadorRecursos;
 
 /**
- *
- * @author izibr
+ *Este es un objeto que al pasar sobre el aumenta 10 puntos la vida base del jugador 
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
  */
 public class Manzana extends Objeto{
     public Manzana(int posicionX, int posicionY) {

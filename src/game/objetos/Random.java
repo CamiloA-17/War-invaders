@@ -7,11 +7,16 @@ package game.objetos;
 import game.principal.Constante;
 import game.principal.entes.Jugador;
 import game.principal.tools.CargadorRecursos;
-import java.awt.image.BufferedImage;
 
 /**
- *
- * @author ASUS
+ * Este es un objeto que al pasar sobre el puede hacer cualquiera de las acciones de los demas objetos
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
  */
 public class Random extends Objeto{
 

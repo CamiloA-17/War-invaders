@@ -12,8 +12,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
- *
- * @author izibr
+ *Esta clase refiere a la ventana base del proyecto, sobre la cual se encuentra la superficie de dibujo 
+ * y por tanto todos los elementos graficos adicionales.
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
  */
 public class Ventana extends JFrame{
     private String titulo;

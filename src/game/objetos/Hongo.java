@@ -9,8 +9,14 @@ import game.principal.entes.Jugador;
 import game.principal.tools.CargadorRecursos;
 
 /**
- *
- * @author ASUS
+ *Este es un objeto que al pasar sobre el reduce 0.2 la velocidad base del jugador
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
  */
 public class Hongo extends Objeto{
 

@@ -22,8 +22,15 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 
 /**
- *
- * @author izibr
+ * Esta clase es la encargada de cargar los elementos externos necesarios para el funcionamiento del juego
+ * 
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
  */
 public class CargadorRecursos {
 

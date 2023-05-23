@@ -11,8 +11,15 @@ import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 
 /**
- *
- * @author izibr
+ *En esta clase es donde directamente se dibujan los demas objetos necesarios para el funcionamiento
+ * del juego
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
  */
 public class SuperficieDibujo extends Canvas {
     private int ancho;

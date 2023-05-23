@@ -11,12 +11,22 @@ import game.principal.entes.Jugador;
 import game.principal.sprites.HojaSprite;
 import game.principal.sprites.Sprite;
 import game.principal.tools.CargadorRecursos;
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
+/**
+ * En esta clase se gestiona la manera en la que se guardan los datos del archivo de texto,
+ * y lo que ocurre con cada cosa que se lee
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
+ */
 
 public class Mapa extends Sprite {
 

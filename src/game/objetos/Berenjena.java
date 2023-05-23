@@ -7,13 +7,17 @@ package game.objetos;
 import game.principal.Constante;
 import game.principal.entes.Jugador;
 import game.principal.tools.CargadorRecursos;
-import java.awt.image.BufferedImage;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
- *
- * @author ASUS
+ * Este es un tipo de objeto que al momento de pasar sobre el hace que el jugador
+ * no se pueda mover durante 2 segundos
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
  */
 public class Berenjena extends Objeto {
 

@@ -1,8 +1,16 @@
 
 package game.principal.sprites;
 
-import java.awt.image.BufferedImage;
-
+/**
+ * Un sprite es la clase base de todo elemento grafico que se dibuje en pantalla
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
+ */
 
 public abstract class Sprite {
     protected double posicionX;

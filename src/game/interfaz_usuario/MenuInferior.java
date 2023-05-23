@@ -11,8 +11,15 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 /**
- *
- * @author izibr
+ *En esta clase se encuentra la barra inferior donde aparecen los atributos del jugador
+ * y los objetos que tiene equipados
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
  */
 public class MenuInferior {
 

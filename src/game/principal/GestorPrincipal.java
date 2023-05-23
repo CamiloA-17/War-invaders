@@ -4,6 +4,17 @@ import game.principal.graphics.SuperficieDibujo;
 import game.principal.graphics.Ventana;
 import game.principal.states.GestorJuego;
 
+/**
+ *Gestor principal es la clase donde se encuentra el main del proyecto
+ * 
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * @version     1.0.0
+ * 
+ */
+
 public class GestorPrincipal {
 
     private boolean enFuncionamiento = false;

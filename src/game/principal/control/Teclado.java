@@ -10,8 +10,15 @@ import java.awt.event.KeyListener;
 import javax.sound.sampled.Clip;
 
 /**
- *
- * @author izibr
+ *En esta clase se tiene control directamente de todo el teclado y el manejo de las teclas 
+ * que se necesitan para el juego
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
  */
 public class Teclado implements KeyListener {
 

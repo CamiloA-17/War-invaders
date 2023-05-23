@@ -8,6 +8,18 @@ import game.exceptions.SpriteSheetCoordinatesNoAvailableException;
 import game.principal.tools.CargadorRecursos;
 import java.awt.image.BufferedImage;
 
+/**
+ * En esta clase se recibe la hoja con los sprites y se determina que es lo que ocurre con los sprites
+ * presentes
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
+ */
+
 public class HojaSprite {
 
     final private int anchoHojaEnPixeles;

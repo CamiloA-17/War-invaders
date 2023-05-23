@@ -18,8 +18,14 @@ import java.awt.image.BufferedImage;
 import javax.swing.SwingUtilities;
 
 /**
- *
- * @author izibr
+ *Esta clase maneja el comportamiento del mouse
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
  */
 public class Mouse extends MouseAdapter {
 

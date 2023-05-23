@@ -2,12 +2,21 @@
 package game.objetos;
 
 import game.principal.entes.Jugador;
-import game.principal.sprites.Sprite;
-import game.principal.tools.CargadorRecursos;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+
+/**
+ * Esta clase maneja los diferentes objetos que se encuentran en el mapa y la manera en como 
+ * estos se dibujan 
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
+ */
 
 public abstract class Objeto {
     protected final int id;

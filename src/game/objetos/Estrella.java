@@ -7,11 +7,17 @@ package game.objetos;
 import game.principal.Constante;
 import game.principal.entes.Jugador;
 import game.principal.tools.CargadorRecursos;
-import java.awt.image.BufferedImage;
 
 /**
- *
- * @author ASUS
+ *Este es un tipo de objeto que aumenta todos los atributos del jugador
+ * suma 10 puntos a la vida, aumenta 0.2 la velocidad y le da un punto
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
  */
 public class Estrella extends Objeto{
 

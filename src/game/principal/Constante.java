@@ -1,5 +1,15 @@
 package game.principal;
 
+/**
+ *En esta clase se encuentran las constantes que se utilizaran para cargar las imagenes
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * @version     1.0.0
+ * 
+ */
+
 public class Constante {
     public static final int LADO_SPRITE= 32;
     public static int ANCHO_VENTANA = 640;

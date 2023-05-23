@@ -14,8 +14,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 /**
- *
- * @author izibr
+ * En esta clase ya se dibujan los elementos a traves de la implementacion de la clase 
+ * jugable
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
  */
 public class GestorJuego implements Jugable {
 

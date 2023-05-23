@@ -10,7 +10,19 @@ import game.principal.sprites.HojaSprite;
 import game.principal.sprites.Sprite;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import javax.swing.JOptionPane;
+
+/**
+ * En esta clase se tiene un control de los diferentes estados de movimiento que puede adoptar el jugador,
+ * y las diferentes acciones que giran alrededor de esta capacidad 
+ * 
+ * 
+ * 
+ * @author      Camilo Molano
+ * @author      Martin Ostios
+ * 
+ * @version     1.0.0
+ * 
+ */
 
 public class Jugador extends Sprite {
 
