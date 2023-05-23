@@ -17,4 +17,10 @@ public class Constante {
     public static String RUTA_OBJETOS = "/game/imgs/hojasObjetos/1.png";
     public static String RUTA_MANZANA = "/game/imgs/manzana.png";
     public static String RUTA_AGUA = "/game/imgs/botella.png";
+    public static String RUTA_HONGO = "/game/imgs/hongo.png";
+    public static String RUTA_SAPO = "/game/imgs/sapo.png";
+    public static String RUTA_MONEDA = "/game/imgs/moneda.png";
+    public static String RUTA_ESTRELLA = "/game/imgs/estrella.png";
+    public static String RUTA_BERENJENA = "/game/imgs/berenjena.png";
+    public static String RUTA_RANDOM = "/game/imgs/random.png";
 }

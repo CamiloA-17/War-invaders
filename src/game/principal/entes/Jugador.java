@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
 public class Jugador extends Sprite{
 
     private int direccion;
-
+    private int puntaje;
     private boolean enMovimiento;
     private double velocidadBase = 1;
     private double velocidad = 0;
@@ -44,6 +44,7 @@ public class Jugador extends Sprite{
         imagenActual = hs.getImage(0);
         animacion = 0;
         estado = 0;
+        puntaje=0;
         this.mapa = mapa;
     }
 
@@ -271,8 +272,10 @@ public class Jugador extends Sprite{
 
         g.setColor(Color.white);
         g.drawImage(imagenActual, centroX, centroY, null);
-        g.drawString("Resistencia: " + resistencia, 20, 40);
-        g.drawString("Velocidad: " + velocidad, 20, 50);
+        g.drawString("Resistencia= " + resistencia, 20, 50);
+        g.drawString("Velocidad= " + velocidad, 20, 60);
+        g.drawString("Puntaje= " + puntaje, 20, 70);
+
     }
 
     public void setVelocidadBase(double velocidadBase) {
@@ -282,10 +285,24 @@ public class Jugador extends Sprite{
     public double getVelocidadBase() {
         return velocidadBase;
     }
-    
-    
-    
-    
-    
-    
+
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
+
+    public void setEnMovimiento(boolean enMovimiento) {
+        this.enMovimiento = enMovimiento;
+    }
 }

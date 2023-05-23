@@ -35,7 +35,7 @@ public class GestorJuego implements Jugable {
     public void dibujar(Graphics g) {
         mapa.dibujar(g, (int) jugador.getPosicionX(), (int) jugador.getPosicionY(), jugador);
         jugador.dibujar(g);
-        g.setColor(Color.red);
+        g.setColor(Color.white);
         g.drawString("x= " + jugador.getPosicionX(), 20, 20);
         g.drawString("y= " + jugador.getPosicionY(), 20, 30);
         menuInferior.dibujar(g, jugador);

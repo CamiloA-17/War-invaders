@@ -1,8 +1,6 @@
 package game.principal.maps;
 
-import game.objetos.BotellaAgua;
-import game.objetos.Objeto;
-import game.objetos.Manzana;
+import game.objetos.*;
 import game.principal.Constante;
 import game.principal.entes.Jugador;
 import game.principal.sprites.HojaSprite;
@@ -128,6 +126,21 @@ public class Mapa extends Sprite {
             
             if(idObjeto == 2){
                 nuevoObjeto = new BotellaAgua(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
+            }
+            if(idObjeto == 3){
+                nuevoObjeto = new Hongo(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
+            }
+            if(idObjeto == 4){
+                nuevoObjeto= new Sapo(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
+            }
+            if(idObjeto ==5){
+                nuevoObjeto= new Moneda(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
+            }
+            if(idObjeto ==6){
+                nuevoObjeto= new Estrella(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));                
+            }
+            if(idObjeto ==7){
+                nuevoObjeto= new Berenjena(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));                
             }
             objetos.add(nuevoObjeto);
         }
