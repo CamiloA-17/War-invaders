@@ -4,6 +4,8 @@ import game.exceptions.IncorrectSpriteSheetDimensionException;
 import game.exceptions.ObjectNoAvailableException;
 import game.objetos.*;
 import game.principal.Constante;
+import game.principal.entes.Chasqueador;
+import game.principal.entes.Enemigo;
 import game.principal.entes.Jugador;
 import game.principal.sprites.HojaSprite;
 import game.principal.sprites.Sprite;
@@ -25,6 +27,7 @@ public class Mapa extends Sprite {
     private final int MARGEN_X = Constante.ANCHO_VENTANA / 2 - Constante.LADO_SPRITE / 2;
     private final int MARGEN_Y = Constante.ALTO_VENTANA / 2 - Constante.LADO_SPRITE / 2;
     public ArrayList<Objeto> objetosMapa;
+    public final ArrayList<Enemigo> enemigos;
 
     public Mapa(final String ruta) {
         super(0, 0, 0, 0);
@@ -54,6 +57,10 @@ public class Mapa extends Sprite {
 
         String informacionObjetos = partes[6];
         objetosMapa = asignarObjetos(informacionObjetos);
+
+        String informacionEnemigos = partes[7];
+        enemigos = asignarEnemigos(informacionEnemigos);
+
     }
 
     private BufferedImage[] asignarSprites(final String[] partesPaleta, final String[] hojasSeparadas) {
@@ -105,6 +112,28 @@ public class Mapa extends Sprite {
         return vectorSprites;
     }
 
+    private ArrayList<Enemigo> asignarEnemigos(final String informacionEnemigos) {
+        ArrayList<Enemigo> enemigos = new ArrayList<>();
+
+        String[] informacionEnemigosSeparada = informacionEnemigos.split("#");
+        for (int i = 0; i < informacionEnemigosSeparada.length; i++) {
+            Enemigo enemigo = null;
+            String[] informacionEnemigoActual = informacionEnemigosSeparada[i].split(":");
+            String[] coordenadas = informacionEnemigoActual[0].split(",");
+            int idEnemigo = Integer.parseInt(informacionEnemigoActual[1].trim());
+            switch(idEnemigo){
+                case 1:
+                    enemigo = new Chasqueador(idEnemigo, "Chasqueador", 120, "");
+                    break;
+                default:
+                    System.out.println("Enemigo no disponible");
+            }
+            enemigo.establecerPosicion(Double.parseDouble(coordenadas[0]), Double.parseDouble(coordenadas[1]));
+            enemigos.add(enemigo);
+        }
+        return enemigos;
+    }
+
     private ArrayList<Objeto> asignarObjetos(final String informacionObjetos) {
         final ArrayList<Objeto> objetos = new ArrayList<Objeto>();
 
@@ -138,7 +167,7 @@ public class Mapa extends Sprite {
                     nuevoObjeto = new Berenjena(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
                     break;
                 default:
-                   throw new ObjectNoAvailableException(idObjeto);
+                    throw new ObjectNoAvailableException(idObjeto);
             }
             objetos.add(nuevoObjeto);
         }
@@ -151,12 +180,12 @@ public class Mapa extends Sprite {
             for (int x = 0; x < this.ancho; x++) {
                 int puntoX = x * Constante.LADO_SPRITE - posicionX + MARGEN_X;
                 int puntoY = y * Constante.LADO_SPRITE - posicionY + MARGEN_Y;
-                if((x+y*(int) this.ancho) < sprites.length ){
+                if ((x + y * (int) this.ancho) < sprites.length) {
                     g.drawImage(paleta[sprites[x + y * (int) this.ancho]], puntoX, puntoY, null);
-                }else{
-                    throw new IncorrectSpriteSheetDimensionException(x+y*(int) this.ancho, sprites.length);
+                } else {
+                    throw new IncorrectSpriteSheetDimensionException(x + y * (int) this.ancho, sprites.length);
                 }
-                
+
             }
         }
         if (!objetosMapa.isEmpty()) {
@@ -167,6 +196,16 @@ public class Mapa extends Sprite {
                         - (int) jugador.getPosicionY() + MARGEN_Y;
 
                 objeto.dibujar(g, puntoX, puntoY);
+            }
+        }
+        
+        if (!enemigos.isEmpty()) {
+            for (Enemigo enemigo : enemigos) {
+                enemigo.setPosXJugador(jugador.getPosicionX());
+                enemigo.setPosYJugador(jugador.getPosicionY());
+                final int puntoX = (int) enemigo.obtenerPosicionX() * Constante.LADO_SPRITE - (int) jugador.getPosicionX() + MARGEN_X;
+                final int puntoY = (int) enemigo.obtenerPosicionY() * Constante.LADO_SPRITE - (int) jugador.getPosicionY() + MARGEN_Y;
+                enemigo.dibujar(g, puntoX, puntoY);
             }
         }
 

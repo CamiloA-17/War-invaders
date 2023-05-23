@@ -13,6 +13,7 @@ public class Constante {
     public static String RUTA_MAPA = "/game/mapas/texto.txt";
     public static String RUTA_ICONO_CURSOR = "/game/imgs/iconos/iconoCursor.png";
     public static String RUTA_PERSONAJE = "/game/imgs/hojasPersonaje/1.png";
+    public static String RUTA_ENEMIGOS = "/game/imgs/hojasEnemigos/";
     public static String RUTA_ICONO_VENTANA = "/game/imgs/iconos/icono.png";
     public static String RUTA_OBJETOS = "/game/imgs/hojasObjetos/1.png";
     public static String RUTA_MANZANA = "/game/imgs/manzana.png";
