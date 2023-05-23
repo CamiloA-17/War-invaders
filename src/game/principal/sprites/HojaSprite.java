@@ -4,6 +4,7 @@
  */
 package game.principal.sprites;
 
+import game.exceptions.SpriteSheetCoordinatesNoAvailableException;
 import game.principal.tools.CargadorRecursos;
 import java.awt.image.BufferedImage;
 
@@ -17,11 +18,14 @@ public class HojaSprite {
 
     final private int anchoSprites;
     final private int altoSprites;
+    
+    final private String ruta;
 
     final private BufferedImage[] images;
 
     public HojaSprite(final String ruta, final int tamanoSprites, final boolean hojaOpaca) {
         final BufferedImage imagen;
+        this.ruta = ruta;
         if (hojaOpaca) {
             imagen = CargadorRecursos.cargarImagenCompatibleOpaca(ruta);
         } else {
@@ -44,6 +48,7 @@ public class HojaSprite {
 
     public HojaSprite(final String ruta, final int anchoSprites, final int altoSprites, final boolean hojaOpaca) {
         final BufferedImage imagen;
+        this.ruta = ruta;
         if (hojaOpaca) {
             imagen = CargadorRecursos.cargarImagenCompatibleOpaca(ruta);
         } else {
@@ -79,7 +84,12 @@ public class HojaSprite {
     }
     
     public BufferedImage getImage(final int x, final int y){
-        return images[x + y * anchoHojaEnSprites];
+        if(x + y * anchoHojaEnSprites < images.length){
+            return images[x + y * anchoHojaEnSprites];
+        }else{
+            throw new SpriteSheetCoordinatesNoAvailableException(x, y, ruta);
+        }
+        
     }
 
 }

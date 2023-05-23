@@ -69,7 +69,7 @@ public class GestorPrincipal {
             fps++;
             
             if (System.nanoTime() - referenciaContador > NS_POR_SEGUNDO) {
-                //window.setTitle(GAME_NAME + " || APS: " + aps + " || FPS: " + fps);
+                //window.setTitle("War Invaders || APS: " + aps + " || FPS: " + fps);
                 System.out.println("FPS: " + fps + " | APS: "+ aps);
                 fps = 0;
                 Constante.APS = aps;

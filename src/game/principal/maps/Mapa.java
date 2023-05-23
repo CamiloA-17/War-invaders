@@ -1,5 +1,7 @@
 package game.principal.maps;
 
+import game.exceptions.IncorrectSpriteSheetDimensionException;
+import game.exceptions.ObjectNoAvailableException;
 import game.objetos.*;
 import game.principal.Constante;
 import game.principal.entes.Jugador;
@@ -51,7 +53,6 @@ public class Mapa extends Sprite {
         sprites = extraerSprites(cadenasSprites);
 
         String informacionObjetos = partes[6];
-        System.out.println(informacionObjetos);
         objetosMapa = asignarObjetos(informacionObjetos);
     }
 
@@ -66,12 +67,6 @@ public class Mapa extends Sprite {
             paleta[indicePaleta] = hoja.getImage(indiceSpriteHoja);
         }
         return paleta;
-    }
-
-    public void escribirArray() {
-        for (int i = 0; i < partes.length; i++) {
-            System.out.println(partes[i]);
-        }
     }
 
     private boolean[] extraerColisiones(final String cadenaColisiones) {
@@ -120,27 +115,30 @@ public class Mapa extends Sprite {
             final String[] divisionInformacionObjetos = contenedoresIndividuales.split(":");
             final String[] coordenadas = divisionInformacionObjetos[0].split(",");
             final int idObjeto = Integer.parseInt(divisionInformacionObjetos[1].trim());
-            if (idObjeto == 1) {
-                nuevoObjeto = new Manzana(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
-            }
-            
-            if(idObjeto == 2){
-                nuevoObjeto = new BotellaAgua(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
-            }
-            if(idObjeto == 3){
-                nuevoObjeto = new Hongo(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
-            }
-            if(idObjeto == 4){
-                nuevoObjeto= new Sapo(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
-            }
-            if(idObjeto ==5){
-                nuevoObjeto= new Moneda(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
-            }
-            if(idObjeto ==6){
-                nuevoObjeto= new Estrella(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));                
-            }
-            if(idObjeto ==7){
-                nuevoObjeto= new Berenjena(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));                
+            switch (idObjeto) {
+                case 1:
+                    nuevoObjeto = new Manzana(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
+                    break;
+                case 2:
+                    nuevoObjeto = new BotellaAgua(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
+                    break;
+                case 3:
+                    nuevoObjeto = new Hongo(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
+                    break;
+                case 4:
+                    nuevoObjeto = new Sapo(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
+                    break;
+                case 5:
+                    nuevoObjeto = new Moneda(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
+                    break;
+                case 6:
+                    nuevoObjeto = new Estrella(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
+                    break;
+                case 7:
+                    nuevoObjeto = new Berenjena(Integer.parseInt(coordenadas[0].trim()), Integer.parseInt(coordenadas[1].trim()));
+                    break;
+                default:
+                   throw new ObjectNoAvailableException(idObjeto);
             }
             objetos.add(nuevoObjeto);
         }
@@ -153,16 +151,20 @@ public class Mapa extends Sprite {
             for (int x = 0; x < this.ancho; x++) {
                 int puntoX = x * Constante.LADO_SPRITE - posicionX + MARGEN_X;
                 int puntoY = y * Constante.LADO_SPRITE - posicionY + MARGEN_Y;
-                g.drawImage(paleta[sprites[x + y * (int) this.ancho]], puntoX, puntoY, null);
-                g.setColor(Color.GREEN);
+                if((x+y*(int) this.ancho) < sprites.length ){
+                    g.drawImage(paleta[sprites[x + y * (int) this.ancho]], puntoX, puntoY, null);
+                }else{
+                    throw new IncorrectSpriteSheetDimensionException(x+y*(int) this.ancho, sprites.length);
+                }
+                
             }
         }
         if (!objetosMapa.isEmpty()) {
             for (Objeto objeto : objetosMapa) {
                 final int puntoX = objeto.obtenerPosicion().x * Constante.LADO_SPRITE
-                        - (int)jugador.getPosicionX() + MARGEN_X;
+                        - (int) jugador.getPosicionX() + MARGEN_X;
                 final int puntoY = objeto.obtenerPosicion().y * Constante.LADO_SPRITE
-                        - (int)jugador.getPosicionY() + MARGEN_Y;
+                        - (int) jugador.getPosicionY() + MARGEN_Y;
 
                 objeto.dibujar(g, puntoX, puntoY);
             }
@@ -174,10 +176,11 @@ public class Mapa extends Sprite {
         actualizarAreasColision(posicionX, posicionY);
         actualizarRecogidaObjetos(jugador);
     }
+
     private void actualizarRecogidaObjetos(Jugador jugador) {
         if (!objetosMapa.isEmpty()) {
-            final Rectangle areaJugador = new Rectangle((int)jugador.getPosicionX(),
-                   (int)jugador.getPosicionY(), Constante.LADO_SPRITE, Constante.LADO_SPRITE);
+            final Rectangle areaJugador = new Rectangle((int) jugador.getPosicionX(),
+                    (int) jugador.getPosicionY(), Constante.LADO_SPRITE, Constante.LADO_SPRITE);
 
             for (int i = 0; i < objetosMapa.size(); i++) {
                 final Objeto objeto = objetosMapa.get(i);

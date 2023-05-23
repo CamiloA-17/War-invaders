@@ -19,7 +19,8 @@ public class Jugador extends Sprite{
     private double velocidadBase = 1;
     private double velocidad = 0;
     public int resistencia = 600;
-    public int vida = 80;
+    public int vida = 100;
+    private int vidaMaxima = 100;
     private int recuperacion = 100;
     private boolean recuperado = true;
 
@@ -291,7 +292,8 @@ public class Jugador extends Sprite{
     }
 
     public void setVida(int vida) {
-        this.vida = vida;
+        if(vida <= vidaMaxima)
+            this.vida = vida;
     }
 
     public int getPuntaje() {

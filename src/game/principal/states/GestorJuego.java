@@ -1,5 +1,8 @@
 package game.principal.states;
 
+import game.exceptions.IncorrectSpriteSheetDimensionException;
+import game.exceptions.ObjectNoAvailableException;
+import game.exceptions.SpriteSheetCoordinatesNoAvailableException;
 import game.interfaces.Jugable;
 import game.interfaz_usuario.MenuInferior;
 import game.principal.Constante;
@@ -20,9 +23,18 @@ public class GestorJuego implements Jugable {
     MenuInferior menuInferior;
 
     public GestorJuego() {
-        mapa = new Mapa(Constante.RUTA_MAPA);
-        jugador = new Jugador(0, 0, mapa);
-        menuInferior = new MenuInferior(jugador);
+        try{
+            mapa = new Mapa(Constante.RUTA_MAPA);
+            jugador = new Jugador(0, 0, mapa);
+            menuInferior = new MenuInferior(jugador);
+        }catch(ObjectNoAvailableException e1){
+            System.out.println(e1.getMessage());
+        }catch(SpriteSheetCoordinatesNoAvailableException e2){
+            System.out.println(e2.getMessage());
+        }catch(IncorrectSpriteSheetDimensionException e3){
+            System.out.println(e3.getMessage());
+        }
+
     }
 
     @Override
@@ -36,8 +48,8 @@ public class GestorJuego implements Jugable {
         mapa.dibujar(g, (int) jugador.getPosicionX(), (int) jugador.getPosicionY(), jugador);
         jugador.dibujar(g);
         g.setColor(Color.white);
-        g.drawString("x= " + jugador.getPosicionX(), 20, 20);
-        g.drawString("y= " + jugador.getPosicionY(), 20, 30);
+        g.drawString(String.format("x = %.0f", jugador.getPosicionX()), 20, 20);
+        g.drawString(String.format("y = %.0f", jugador.getPosicionY()), 20, 30);
         menuInferior.dibujar(g, jugador);
 
     }
