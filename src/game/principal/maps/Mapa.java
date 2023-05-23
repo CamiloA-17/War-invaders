@@ -1,5 +1,6 @@
 package game.principal.maps;
 
+import game.exceptions.EnemyNoAvailableException;
 import game.exceptions.IncorrectSpriteSheetDimensionException;
 import game.exceptions.ObjectNoAvailableException;
 import game.objetos.*;
@@ -123,10 +124,10 @@ public class Mapa extends Sprite {
             int idEnemigo = Integer.parseInt(informacionEnemigoActual[1].trim());
             switch(idEnemigo){
                 case 1:
-                    enemigo = new Chasqueador(idEnemigo, "Chasqueador", 120, "");
+                    enemigo = new Chasqueador(idEnemigo, "Chasqueador", 120, "/game/sonidos/zombie.wav");
                     break;
                 default:
-                    System.out.println("Enemigo no disponible");
+                    throw new EnemyNoAvailableException(idEnemigo);
             }
             enemigo.establecerPosicion(Double.parseDouble(coordenadas[0]), Double.parseDouble(coordenadas[1]));
             enemigos.add(enemigo);
@@ -188,6 +189,10 @@ public class Mapa extends Sprite {
 
             }
         }
+        
+        Rectangle test = new Rectangle((int) jugador.getPosicionX(),
+                    (int) jugador.getPosicionY(), Constante.LADO_SPRITE, Constante.LADO_SPRITE);
+        
         if (!objetosMapa.isEmpty()) {
             for (Objeto objeto : objetosMapa) {
                 final int puntoX = objeto.obtenerPosicion().x * Constante.LADO_SPRITE
@@ -214,6 +219,7 @@ public class Mapa extends Sprite {
     public void actualizar(final int posicionX, final int posicionY, Jugador jugador) {
         actualizarAreasColision(posicionX, posicionY);
         actualizarRecogidaObjetos(jugador);
+        actualizarColisionEnemigos(jugador);
     }
 
     private void actualizarRecogidaObjetos(Jugador jugador) {
@@ -233,6 +239,16 @@ public class Mapa extends Sprite {
                     objeto.recoger(jugador);
                     objetosMapa.remove(i);
                 }
+            }
+        }
+    }
+    
+    private void actualizarColisionEnemigos(Jugador jugador){
+        if (!enemigos.isEmpty()) {
+            for (int i = 0; i < enemigos.size(); i++) {
+                final Enemigo enemigo = enemigos.get(i);
+                final Rectangle posicionContenedor = enemigo.obtenerArea(jugador);
+                jugador.revisarColisionEnemigo(posicionContenedor, enemigo);
             }
         }
     }

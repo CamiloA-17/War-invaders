@@ -6,9 +6,12 @@ package game.principal.entes;
 
 import game.principal.Constante;
 import game.principal.sprites.HojaSprite;
+import game.principal.tools.CargadorRecursos;
+import game.principal.tools.Sonido;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import javax.sound.sampled.Clip;
 
 /**
  *
@@ -16,7 +19,7 @@ import java.awt.Rectangle;
  */
 public abstract class Enemigo implements Runnable {
 
-    //private Sonido lamento;
+    private Sonido lamento;
     private static HojaSprite hojaEnemigo;
     private long duracionLamento;
     private long lamentoSiguiente = 0;
@@ -33,6 +36,7 @@ public abstract class Enemigo implements Runnable {
     private double posYJugador;
     private int direccion;
     private Thread thread = null;
+    private boolean isRunning = false;
 
     public Enemigo(final int idEnemigo, final String nombre, final int vidaMaxima, final String rutaLamento, final HojaSprite hojaEnemigo) {
         this.hojaEnemigo = hojaEnemigo;
@@ -48,16 +52,17 @@ public abstract class Enemigo implements Runnable {
         this.vidaMaxima = vidaMaxima;
         this.vidaActual = vidaMaxima;
 
+        this.lamento = new Sonido(rutaLamento);
+        this.duracionLamento = lamento.obtenerDuracion();
+
         thread = new Thread(this);
         thread.start();
-
-        //this.lamento = new Sonido(rutaLamento);
-        //this.duracionLamento = lamento.obtenerDuracion();
+        isRunning = true;
     }
 
     @Override
     public void run() {
-        while (true) {
+        while (isRunning) {
             //arriba
             if (this.posicionY - this.posYJugador > 0.5 || this.posicionY - this.posYJugador < -0.5) {
                 if (this.posicionY > this.posYJugador) {
@@ -96,19 +101,21 @@ public abstract class Enemigo implements Runnable {
     }
 
     public void actualizar() {
-        //if (lamentoSiguiente > 0) {
-        //lamentoSiguiente -= 1000000 / 60;
-        //}
+        if (lamentoSiguiente > 0) {
+            lamentoSiguiente -= 1000000 / 60;
+        }
         //moverHaciaSiguienteNodo(enemigos);
     }
 
     public void dibujar(final Graphics g, final int puntoX, final int puntoY) {
         if (vidaActual <= 0) {
+            isRunning = false;
             return;
         }
 
         dibujarBarraVida(g, puntoX, puntoY);
-        g.drawImage(hojaEnemigo.getImage(1), puntoX, puntoY, null);
+        g.drawImage(hojaEnemigo.getImage(direccion), puntoX, puntoY, null);
+        g.setColor(Color.BLUE);
         //DibujoDebug.dibujarRectanguloContorno(g, obtenerArea());
         //dibujarDistancia(g, puntoX, puntoY);
     }
@@ -139,16 +146,15 @@ public abstract class Enemigo implements Runnable {
         return vidaActual;
     }
 
-    public Rectangle obtenerArea() {
-        //final int puntoX = (int) posicionX - (int) jugador.obtenerPosicionX() + Constante.MARGEN_X;
-        //final int puntoY = (int) posicionY - (int) jugador.obtenerPosicionY() + Constante.MARGEN_Y;
-
-        return null;//new Rectangle(puntoX, puntoY, Constante.LADO_SPRITE, Constante.LADO_SPRITE);
+    public Rectangle obtenerArea(Jugador jugador) {
+        final int puntoX = (int) posicionX * Constante.LADO_SPRITE - (int) jugador.getPosicionX() + Constante.MARGEN_X;
+        final int puntoY = (int) posicionY * Constante.LADO_SPRITE - (int) jugador.getPosicionY() + Constante.MARGEN_Y;
+        return new Rectangle(puntoX, puntoY, Constante.LADO_SPRITE, Constante.LADO_SPRITE);
     }
 
     public void perderVida(float ataqueRecibido) {
         if (lamentoSiguiente <= 0) {
-            //lamento.reproducir();
+            lamento.reproducir();
             lamentoSiguiente = duracionLamento;
         }
 
@@ -170,6 +176,10 @@ public abstract class Enemigo implements Runnable {
 
     public void setPosYJugador(double posYJugador) {
         this.posYJugador = posYJugador / Constante.LADO_SPRITE;
+    }
+    
+    public void atacar(Jugador jugador){
+        
     }
 
 }

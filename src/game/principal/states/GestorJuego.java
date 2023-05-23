@@ -1,5 +1,6 @@
 package game.principal.states;
 
+import game.exceptions.EnemyNoAvailableException;
 import game.exceptions.IncorrectSpriteSheetDimensionException;
 import game.exceptions.ObjectNoAvailableException;
 import game.exceptions.SpriteSheetCoordinatesNoAvailableException;
@@ -33,6 +34,8 @@ public class GestorJuego implements Jugable {
             System.out.println(e2.getMessage());
         }catch(IncorrectSpriteSheetDimensionException e3){
             System.out.println(e3.getMessage());
+        }catch(EnemyNoAvailableException e4){
+            System.out.println(e4.getMessage());
         }
 
     }

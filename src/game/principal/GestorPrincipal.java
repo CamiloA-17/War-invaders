@@ -22,8 +22,6 @@ public class GestorPrincipal {
 
     public static void main(String[] args) {
         GestorPrincipal controller = new GestorPrincipal("War Invaders", 640, 360);
-        Constante.ALTO_VENTANA=360;
-        Constante.ANCHO_VENTANA=640;
         controller.iniciarJuego();
         controller.iniciarBuclePrincipal();
     }

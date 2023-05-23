@@ -4,8 +4,10 @@
  */
 package game.principal.control;
 
+import game.principal.tools.CargadorRecursos;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.sound.sampled.Clip;
 
 /**
  *
@@ -19,6 +21,7 @@ public class Teclado implements KeyListener {
     public Tecla derecha = new Tecla();
     
     public boolean corriendo = false;
+    public boolean atacando = false;
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -37,6 +40,12 @@ public class Teclado implements KeyListener {
                 break;
             case KeyEvent.VK_SHIFT:
                 corriendo = true;
+                break;
+            case KeyEvent.VK_SPACE:
+                Clip disparo = CargadorRecursos.cargarSonido("/game/sonidos/espada.wav");
+                disparo.start();
+                atacando = true;
+                //disparo.stop();
                 break;
         }
     }

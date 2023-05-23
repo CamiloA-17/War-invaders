@@ -9,6 +9,8 @@ public class Constante {
     public static int CENTRO_VENTANA_Y = ALTO_VENTANA / 2;
     
     public static int APS = 0;
+    public static int MARGEN_X = ANCHO_VENTANA / 2 - LADO_SPRITE / 2;
+    public static int MARGEN_Y = ALTO_VENTANA / 2 - LADO_SPRITE / 2;
     
     public static String RUTA_MAPA = "/game/mapas/texto.txt";
     public static String RUTA_ICONO_CURSOR = "/game/imgs/iconos/iconoCursor.png";

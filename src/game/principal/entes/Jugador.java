@@ -276,7 +276,34 @@ public class Jugador extends Sprite{
         g.drawString("Resistencia= " + resistencia, 20, 50);
         g.drawString("Velocidad= " + velocidad, 20, 60);
         g.drawString("Puntaje= " + puntaje, 20, 70);
+        
+        
 
+    }
+    
+    public void revisarColisionEnemigo(Rectangle cajaEnemigo, Enemigo enemigo){
+        if(cajaEnemigo.intersects(LIMITE_ABAJO)){
+            if(direccion == 0 && GestorControl.teclado.atacando){
+                enemigo.perderVida(1);
+            }
+        }
+        
+        if(cajaEnemigo.intersects(LIMITE_ARRIBA)){
+            if(direccion == 1 && GestorControl.teclado.atacando){
+                enemigo.perderVida(1);
+            }
+        }
+        
+        if(cajaEnemigo.intersects(LIMITE_DERECHA)){
+            if(direccion == 2 && GestorControl.teclado.atacando){
+                enemigo.perderVida(1);
+            }
+        }
+        if(cajaEnemigo.intersects(LIMITE_IZQUIERDA)){
+            if(direccion == 3 && GestorControl.teclado.atacando){
+                enemigo.perderVida(1);
+            }
+        }
     }
 
     public void setVelocidadBase(double velocidadBase) {
