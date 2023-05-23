@@ -10,8 +10,9 @@ import game.principal.sprites.HojaSprite;
 import game.principal.sprites.Sprite;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import javax.swing.JOptionPane;
 
-public class Jugador extends Sprite{
+public class Jugador extends Sprite {
 
     private int direccion;
     private int puntaje;
@@ -37,7 +38,7 @@ public class Jugador extends Sprite{
 
     private Mapa mapa;
 
-    public Jugador(double posicionX, double posicionY, Mapa mapa){
+    public Jugador(double posicionX, double posicionY, Mapa mapa) {
         super(posicionX, posicionY, 20, 20);
         enMovimiento = false;
         direccion = 0;
@@ -45,7 +46,7 @@ public class Jugador extends Sprite{
         imagenActual = hs.getImage(0);
         animacion = 0;
         estado = 0;
-        puntaje=0;
+        puntaje = 0;
         this.mapa = mapa;
     }
 
@@ -276,33 +277,38 @@ public class Jugador extends Sprite{
         g.drawString("Resistencia= " + resistencia, 20, 50);
         g.drawString("Velocidad= " + velocidad, 20, 60);
         g.drawString("Puntaje= " + puntaje, 20, 70);
-        
-        
 
     }
-    
-    public void revisarColisionEnemigo(Rectangle cajaEnemigo, Enemigo enemigo){
-        if(cajaEnemigo.intersects(LIMITE_ABAJO)){
-            if(direccion == 0 && GestorControl.teclado.atacando){
+
+    public void revisarColisionEnemigo(Rectangle cajaEnemigo, Enemigo enemigo) {
+        if (cajaEnemigo.intersects(LIMITE_ABAJO)) {
+            if (direccion == 0 && GestorControl.teclado.atacando) {
                 enemigo.perderVida(1);
             }
+            enemigo.atacar(this);
         }
-        
-        if(cajaEnemigo.intersects(LIMITE_ARRIBA)){
-            if(direccion == 1 && GestorControl.teclado.atacando){
+
+        if (cajaEnemigo.intersects(LIMITE_ARRIBA)) {
+            if (direccion == 1 && GestorControl.teclado.atacando) {
                 enemigo.perderVida(1);
+
             }
+            enemigo.atacar(this);
         }
-        
-        if(cajaEnemigo.intersects(LIMITE_DERECHA)){
-            if(direccion == 2 && GestorControl.teclado.atacando){
+
+        if (cajaEnemigo.intersects(LIMITE_DERECHA)) {
+            if (direccion == 2 && GestorControl.teclado.atacando) {
                 enemigo.perderVida(1);
+
             }
+            enemigo.atacar(this);
         }
-        if(cajaEnemigo.intersects(LIMITE_IZQUIERDA)){
-            if(direccion == 3 && GestorControl.teclado.atacando){
+        if (cajaEnemigo.intersects(LIMITE_IZQUIERDA)) {
+            if (direccion == 3 && GestorControl.teclado.atacando) {
                 enemigo.perderVida(1);
+
             }
+            enemigo.atacar(this);
         }
     }
 
@@ -319,8 +325,12 @@ public class Jugador extends Sprite{
     }
 
     public void setVida(int vida) {
-        if(vida <= vidaMaxima)
+        if (vida <= vidaMaxima) {
             this.vida = vida;
+        }
+        if(vida < 0){
+            this.vida = 0;
+        }
     }
 
     public int getPuntaje() {

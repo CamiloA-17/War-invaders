@@ -37,6 +37,8 @@ public abstract class Enemigo implements Runnable {
     private int direccion;
     private Thread thread = null;
     private boolean isRunning = false;
+    private boolean golpear = false;
+    private int ataque = 0;
 
     public Enemigo(final int idEnemigo, final String nombre, final int vidaMaxima, final String rutaLamento, final HojaSprite hojaEnemigo) {
         this.hojaEnemigo = hojaEnemigo;
@@ -104,6 +106,14 @@ public abstract class Enemigo implements Runnable {
         if (lamentoSiguiente > 0) {
             lamentoSiguiente -= 1000000 / 60;
         }
+        ataque++;
+        if (ataque == 30) {
+            golpear = true;
+        }
+        if (ataque == 60) {
+            ataque = 0;
+        }
+
         //moverHaciaSiguienteNodo(enemigos);
     }
 
@@ -159,6 +169,8 @@ public abstract class Enemigo implements Runnable {
         }
 
         if (vidaActual - ataqueRecibido < 0) {
+            posicionX = -100;
+            posicionY = -100;
             vidaActual = 0;
 
         } else {
@@ -177,9 +189,12 @@ public abstract class Enemigo implements Runnable {
     public void setPosYJugador(double posYJugador) {
         this.posYJugador = posYJugador / Constante.LADO_SPRITE;
     }
-    
-    public void atacar(Jugador jugador){
-        
+
+    public void atacar(Jugador jugador) {
+        if (golpear) {
+            jugador.setVida(jugador.getVida() - 10);
+            golpear = false;
+        }
     }
 
 }

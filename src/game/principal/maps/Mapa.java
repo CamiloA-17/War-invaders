@@ -220,6 +220,9 @@ public class Mapa extends Sprite {
         actualizarAreasColision(posicionX, posicionY);
         actualizarRecogidaObjetos(jugador);
         actualizarColisionEnemigos(jugador);
+        for (Enemigo enemigo : enemigos) {
+            enemigo.actualizar();
+        }
     }
 
     private void actualizarRecogidaObjetos(Jugador jugador) {
