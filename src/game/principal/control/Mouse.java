@@ -41,8 +41,8 @@ public class Mouse extends MouseAdapter {
 
     public void dibujar(final Graphics g) {
         g.setColor(Color.red);
-        g.drawString("RX: " + posicion.getX(), 10, 200);
-        g.drawString("RY: " + posicion.getY(), 10, 210);
+        //g.drawString("RX: " + posicion.getX(), 10, 200);
+        //g.drawString("RY: " + posicion.getY(), 10, 210);
     }
 
     public Cursor getCursor() {

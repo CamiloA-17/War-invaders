@@ -2,8 +2,7 @@ package game.principal.graphics;
 
 import game.principal.control.GestorControl;
 import game.principal.control.Mouse;
-import game.principal.control.Teclado;
-import game.principal.statesmachine.GestorEstados;
+import game.principal.states.GestorJuego;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -38,7 +37,7 @@ public class SuperficieDibujo extends Canvas {
         raton.actualizar(this); 
     }
     
-    public void dibujar(GestorEstados ge){
+    public void dibujar(GestorJuego gj){
         BufferStrategy buffer = getBufferStrategy();
         if(buffer == null){
             createBufferStrategy(3);
@@ -48,7 +47,7 @@ public class SuperficieDibujo extends Canvas {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, ancho, alto);
         
-        ge.dibujar(g);
+        gj.dibujar(g);
         raton.dibujar(g);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();

@@ -7,10 +7,6 @@ package game.principal.sprites;
 import game.principal.tools.CargadorRecursos;
 import java.awt.image.BufferedImage;
 
-/**
- *
- * @author izibr
- */
 public class HojaSprite {
 
     final private int anchoHojaEnPixeles;
@@ -22,7 +18,7 @@ public class HojaSprite {
     final private int anchoSprites;
     final private int altoSprites;
 
-    final private Sprite[] sprites;
+    final private BufferedImage[] images;
 
     public HojaSprite(final String ruta, final int tamanoSprites, final boolean hojaOpaca) {
         final BufferedImage imagen;
@@ -41,7 +37,7 @@ public class HojaSprite {
         anchoSprites = tamanoSprites;
         altoSprites = tamanoSprites;
 
-        sprites = new Sprite[anchoHojaEnSprites * altoHojaEnSprites];
+        images = new BufferedImage[anchoHojaEnSprites * altoHojaEnSprites];
         
         rellenarSpritesDesdeImagen(imagen);
     }
@@ -63,7 +59,7 @@ public class HojaSprite {
         this.anchoSprites = anchoSprites;
         this.altoSprites = altoSprites;
 
-        sprites = new Sprite[anchoHojaEnSprites * altoHojaEnSprites];
+        images = new BufferedImage[anchoHojaEnSprites * altoHojaEnSprites];
         rellenarSpritesDesdeImagen(imagen);
     }
     
@@ -73,17 +69,17 @@ public class HojaSprite {
                 final int posicionX = x * anchoSprites;
                 final int posicionY = y * altoSprites;
                 
-                sprites[x+y*anchoHojaEnSprites] = new Sprite(imagen.getSubimage(posicionX, posicionY, anchoSprites, altoSprites));
+                images[x+y*anchoHojaEnSprites] = imagen.getSubimage(posicionX, posicionY, anchoSprites, altoSprites);
             }
         }
     }
     
-    public Sprite getSprite(final int indice){
-        return sprites[indice];
+    public BufferedImage getImage(final int indice){
+        return images[indice];
     }
     
-    public Sprite getSprite(final int x, final int y){
-        return sprites[x + y * anchoHojaEnSprites];
+    public BufferedImage getImage(final int x, final int y){
+        return images[x + y * anchoHojaEnSprites];
     }
 
 }

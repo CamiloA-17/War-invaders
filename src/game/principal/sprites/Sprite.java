@@ -1,38 +1,57 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package game.principal.sprites;
 
 import java.awt.image.BufferedImage;
 
-/**
- *
- * @author izibr
- */
-public class Sprite {
-    private final BufferedImage imagen;
-    
-    private final int ancho;
-    private final int alto;
 
-    public Sprite(final BufferedImage imagen) {
-        this.imagen = imagen;
-        this.ancho = imagen.getWidth();
-        this.alto = imagen.getHeight();
-    }
-    
-    public BufferedImage getImagen(){
-        return imagen;
+public abstract class Sprite {
+    protected double posicionX;
+    protected double posicionY;
+    protected double ancho;
+    protected double alto;
+
+    public Sprite(double posicionX, double posicionY, int ancho, int alto) {
+        this.posicionX = posicionX;
+        this.posicionY = posicionY;
+        this.ancho = ancho;
+        this.alto = alto;
     }
 
-    public int getAlto() {
+    public double getPosicionX() {
+        return posicionX;
+    }
+
+    public double getPosicionY() {
+        return posicionY;
+    }
+
+    public double getAncho() {
+        return ancho;
+    }
+
+    public double getAlto() {
         return alto;
     }
 
-    public int getAncho() {
-        return ancho;
+    public void setPosicionX(double posicionX) {
+        this.posicionX = posicionX;
     }
+
+    public void setPosicionY(double posicionY) {
+        this.posicionY = posicionY;
+    }
+
+    public void setAncho(double ancho) {
+        this.ancho = ancho;
+    }
+
+    public void setAlto(double alto) {
+        this.alto = alto;
+    }
+    
+    
+    
+
     
     
     

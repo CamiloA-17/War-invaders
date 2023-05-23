@@ -7,30 +7,26 @@ import game.principal.Constante;
 import game.principal.control.GestorControl;
 import game.principal.maps.Mapa;
 import game.principal.sprites.HojaSprite;
+import game.principal.sprites.Sprite;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-public class Jugador {
-
-    private double posicionX;
-    private double posicionY;
+public class Jugador extends Sprite{
 
     private int direccion;
 
     private boolean enMovimiento;
-
-    private double velocidad = 2;
+    private double velocidadBase = 1;
+    private double velocidad = 0;
     public int resistencia = 600;
+    public int vida = 80;
     private int recuperacion = 100;
     private boolean recuperado = true;
 
     private HojaSprite hs;
     private BufferedImage imagenActual;
-    private final int ANCHO_JUGADOR = 20;
-    private final int ALTO_JUGADOR = 20;
 
     private final Rectangle LIMITE_ARRIBA = new Rectangle(Constante.CENTRO_VENTANA_X - 10, Constante.CENTRO_VENTANA_Y - 10, Constante.LADO_SPRITE - 12, 1);
-
     private final Rectangle LIMITE_ABAJO = new Rectangle(Constante.CENTRO_VENTANA_X - 10, Constante.CENTRO_VENTANA_Y + 10, Constante.LADO_SPRITE - 12, 1);
     private final Rectangle LIMITE_IZQUIERDA = new Rectangle(Constante.CENTRO_VENTANA_X - 10, Constante.CENTRO_VENTANA_Y - 10, 1, 20);
     private final Rectangle LIMITE_DERECHA = new Rectangle(Constante.CENTRO_VENTANA_X + 10, Constante.CENTRO_VENTANA_Y - 10, 1, 20);
@@ -40,13 +36,12 @@ public class Jugador {
 
     private Mapa mapa;
 
-    public Jugador(double posicionX, double posicionY, Mapa mapa) {
-        this.posicionX = posicionX;
-        this.posicionY = posicionY;
+    public Jugador(double posicionX, double posicionY, Mapa mapa){
+        super(posicionX, posicionY, 20, 20);
         enMovimiento = false;
         direccion = 0;
         hs = new HojaSprite(Constante.RUTA_PERSONAJE, Constante.LADO_SPRITE, false);
-        imagenActual = hs.getSprite(0).getImagen();
+        imagenActual = hs.getImage(0);
         animacion = 0;
         estado = 0;
         this.mapa = mapa;
@@ -62,11 +57,11 @@ public class Jugador {
 
     private void gestionarVelocidadResistencia() {
         if (GestorControl.teclado.corriendo && resistencia > 0) {
-            velocidad = 2;
+            velocidad = velocidadBase + 2;
             recuperado = false;
             recuperacion = 0;
         } else {
-            velocidad = 1;
+            velocidad = velocidadBase + 1;
             if (!recuperado && recuperacion < 100) {
                 recuperacion++;
             }
@@ -236,7 +231,7 @@ public class Jugador {
     private boolean fueraMapa(final int velocidadX, final int velocidadY) {
         int posicionFuturaX = (int) posicionX + velocidadX * (int) velocidad;
         int posicionFuturaY = (int) posicionY + velocidadY * (int) velocidad;
-        final Rectangle bordesMapa = mapa.obtenerBordes(posicionFuturaX, posicionFuturaY, ANCHO_JUGADOR, ALTO_JUGADOR);
+        final Rectangle bordesMapa = mapa.obtenerBordes(posicionFuturaX, posicionFuturaY, (int) getAncho(), (int) getAlto());
         final boolean fuera;
 
         if (LIMITE_ARRIBA.intersects(bordesMapa) || LIMITE_ABAJO.intersects(bordesMapa) || LIMITE_IZQUIERDA.intersects(bordesMapa) || LIMITE_DERECHA.intersects(bordesMapa)) {
@@ -267,7 +262,7 @@ public class Jugador {
             estado = 0;
             animacion = 0;
         }
-        imagenActual = hs.getSprite(direccion, estado).getImagen();
+        imagenActual = hs.getImage(direccion, estado);
     }
 
     public void dibujar(Graphics g) {
@@ -277,25 +272,20 @@ public class Jugador {
         g.setColor(Color.white);
         g.drawImage(imagenActual, centroX, centroY, null);
         g.drawString("Resistencia: " + resistencia, 20, 40);
-//        g.drawRect(LIMITE_ARRIBA.x, LIMITE_ARRIBA.y, LIMITE_ARRIBA.width, LIMITE_ARRIBA.height);
-//        g.drawRect(LIMITE_ABAJO.x, LIMITE_ABAJO.y, LIMITE_ABAJO.width, LIMITE_ABAJO.height);
-//        g.drawRect(LIMITE_IZQUIERDA.x, LIMITE_IZQUIERDA.y, LIMITE_IZQUIERDA.width, LIMITE_IZQUIERDA.height);
-//        g.drawRect(LIMITE_DERECHA.x, LIMITE_DERECHA.y, LIMITE_DERECHA.width, LIMITE_DERECHA.height);
+        g.drawString("Velocidad: " + velocidad, 20, 50);
     }
 
-    public void establecerPosicionX(double posicionX) {
-        this.posicionX = posicionX;
+    public void setVelocidadBase(double velocidadBase) {
+        this.velocidadBase = velocidadBase;
     }
 
-    public void establecerPosicionY(double posicionY) {
-        this.posicionY = posicionY;
+    public double getVelocidadBase() {
+        return velocidadBase;
     }
-
-    public double getPosicionX() {
-        return posicionX;
-    }
-
-    public double getPosicionY() {
-        return posicionY;
-    }
+    
+    
+    
+    
+    
+    
 }

@@ -1,14 +1,9 @@
 package game.principal;
 
-import game.principal.control.GestorControl;
 import game.principal.graphics.SuperficieDibujo;
 import game.principal.graphics.Ventana;
-import game.principal.statesmachine.GestorEstados;
+import game.principal.states.GestorJuego;
 
-/**
- *
- * @author izibr
- */
 public class GestorPrincipal {
 
     private boolean enFuncionamiento = false;
@@ -17,7 +12,7 @@ public class GestorPrincipal {
     private int alto;
     private SuperficieDibujo sd;
     private Ventana window;
-    private GestorEstados ge;
+    private GestorJuego gj;
 
     public GestorPrincipal(String titulo, int ancho, int alto) {
         this.titulo = titulo;
@@ -26,7 +21,6 @@ public class GestorPrincipal {
     }
 
     public static void main(String[] args) {
-        
         GestorPrincipal controller = new GestorPrincipal("War Invaders", 640, 360);
         Constante.ALTO_VENTANA=360;
         Constante.ANCHO_VENTANA=640;
@@ -42,7 +36,7 @@ public class GestorPrincipal {
     private void inicializar() {
         sd = new SuperficieDibujo(ancho, alto);
         window = new Ventana(titulo, sd);
-        ge = new GestorEstados();
+        gj = new GestorJuego();
 
     }
 
@@ -87,12 +81,12 @@ public class GestorPrincipal {
     
     
     private void actualizar(){
-        ge.actualizar();
+        gj.actualizar();
         sd.actualizar();
     }
     
     private void dibujar(){
-        sd.dibujar(ge);
+        sd.dibujar(gj);
     }
 
 }
