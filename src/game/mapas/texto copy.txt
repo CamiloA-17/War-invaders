@@ -4,15 +4,25 @@
 *
 1   //hojas de sprite: 1,2,..
 *
-01:1-0 //sprite 1 hoja 1 pos 0 -hierba
+00-1-0 //sprite 1 hoja 1 pos 0 -hierba
 #
-02:1-2 //arena
+01-1-1 //tierra expuesta
 #
-03:1-3 //agua
+02-1-2 //arena
 #
-04:1-5 //hierba con hongos
+03-1-3 //agua
 #
-05:1-1 //tierra expuesta
+04-1-4 //hierba con flores
+#
+05-1-5 //hierba con hongos
+#
+06-1-6 //arbol
+#
+07-1-7 //arriba izquierda a
+#
+08-1-8
+#
+09-1-9
 *
 00000000000 //mapa colisiones
 00000000000
