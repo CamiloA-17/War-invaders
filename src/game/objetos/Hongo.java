@@ -10,17 +10,18 @@ import game.principal.tools.CargadorRecursos;
 
 /**
  *
- * @author izibr
+ * @author ASUS
  */
-public class Manzana extends Objeto{
-    public Manzana(int posicionX, int posicionY) {
-        super(1, posicionX, posicionY, CargadorRecursos.cargarImagenCompatibleTranslucida(Constante.RUTA_MANZANA));
+public class Hongo extends Objeto{
+
+    public Hongo(int posicionX, int posicionY) {
+        super(3, posicionX, posicionY, CargadorRecursos.cargarImagenCompatibleTranslucida(Constante.RUTA_HONGO));
     }
     
+
     @Override
-    public void recoger(Jugador jugador){
-        jugador.setVida(jugador.getVida() + 10);
+    public void recoger(Jugador jugador) {
+        jugador.setVelocidadBase(jugador.getVelocidadBase() - 0.2);
     }
-    
     
 }

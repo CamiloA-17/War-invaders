@@ -7,20 +7,21 @@ package game.objetos;
 import game.principal.Constante;
 import game.principal.entes.Jugador;
 import game.principal.tools.CargadorRecursos;
+import java.awt.image.BufferedImage;
 
 /**
  *
- * @author izibr
+ * @author ASUS
  */
-public class Manzana extends Objeto{
-    public Manzana(int posicionX, int posicionY) {
-        super(1, posicionX, posicionY, CargadorRecursos.cargarImagenCompatibleTranslucida(Constante.RUTA_MANZANA));
+public class Moneda extends Objeto{
+
+    public Moneda(int posicionX, int posicionY) {
+        super(5, posicionX, posicionY, CargadorRecursos.cargarImagenCompatibleTranslucida(Constante.RUTA_MONEDA));
     }
-    
+
     @Override
-    public void recoger(Jugador jugador){
-        jugador.setVida(jugador.getVida() + 10);
+    public void recoger(Jugador jugador) {
+        jugador.setPuntaje(jugador.getPuntaje()+1);
     }
-    
     
 }
